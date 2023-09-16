@@ -7,9 +7,11 @@ const _=require('lodash');
 const mongoose=require('mongoose');
 // const encrypt=require('mongoose-encryption')
 // const Blog = require('./models/Blog');
-const homeStartingContent ="Hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Non diam phasellus vestibulum lorem sed. Platea dictumst quisque sagittis purus sit. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Mauris in aliquam sem fringilla. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Amet massa vitae tortor condimentum lacinia quis vel eros. Enim ut tellus elementum sagittis vitae. Mauris ultrices eros in cursus turpis massa tincidunt dui.";
-const aboutContent = "Hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Non diam phasellus vestibulum lorem sed. Platea dictumst quisque sagittis purus sit. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Mauris in aliquam sem fringilla. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Amet massa vitae tortor condimentum lacinia quis vel eros. Enim ut tellus elementum sagittis vitae. Mauris ultrices eros in cursus turpis massa tincidunt dui.";
-const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rhoncus urna neque viverra justo nec ultrices. Arcu dui vivamus arcu felis bibendum. Consectetur adipiscing elit duis tristique. Risus viverra adipiscing at in tellus integer feugiat. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Consequat interdum varius sit amet mattis. Iaculis nunc sed augue lacus. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Pulvinar elementum integer enim neque. Ultrices gravida dictum fusce ut placerat orci nulla. Mauris in aliquam sem fringilla ut morbi tincidunt. Tortor posuere ac ut consequat semper viverra nam libero.";
+const homeStartingContent =`Certainly! The "75 HARD Challenge" has gained popularity as a powerful personal development journey that can transform your life. It's not just a physical challenge but also a mental and emotional one. So I have thought of giving it a try. I won't be following the exact rules as mentioned but I will try to improvise this in my own manner without missing the core part of the challenge which is "Pushing Yourself To Your Max limit". Therofore I would love to call it "The 75 MINDFULLNESS EVE".  `;
+const aboutContent = `I'm Abish Chhetri, pursuing my B.Tech in computer science and technology. I'm interested in cyber security, IoT, and block chain technology. I am a self-motivated, intensely enthusiastic, and diligent individual who does have some leadership abilities. 
+Being new to computer science and technology, I've been doing my best to prepare myself as much as possible by taking classes on subjects like React Js, Node Js, Python. I was self-motivated to pursue UI/UX designing with Figma, and I believe I have learned a lot about it and have used those abilities frequently. 
+I've worked on e-commerce websites and home automation projects too. I am certain that the knowledge I've gained has aided me in developing creative and effective designs that successfully portray the intended message. As a result, I've become incredibly organised, have developed some fantastic website creation skills, and am able to manage multiple tasks at once. To ensure a happy and prosperous future, I strive to study more, acquire more skills which would be much more beneficial for me in the future.`;
+const contactContent = "Comming soon";
 
 
 
@@ -26,8 +28,7 @@ mongoose.connect('mongodb+srv://abishchhetri2502:BA1hj4dxRO88qmFO@cluster0.0em2p
 
 
 const blogSchema= new mongoose.Schema({
-  name:String,
-  number:Number,
+  Content:[{String}],
 },{
   timestamps:true,
 }
@@ -45,12 +46,14 @@ const blogSchema= new mongoose.Schema({
 
 const Blog=mongoose.model('Blog',blogSchema)
 
-const Admin=new Blog({
-  name:'Abish',
-  number:6507,
-});
+// const Admin=new Blog({
+//   Title:String,
+//   Content:{
+//     type:String,
+//   }
+// });
 
-Admin.save();
+
 // const document=async()=>{
 //       const contact=new Daily({
 //             title:"Content",
@@ -102,10 +105,14 @@ Admin.save();
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
-
+// const allBlogs = Blog.find({});
 let posts=[];
 
+console.log(posts)
 app.get('/',(req,res)=>{
+  // const result = mongoose.find({Content: posts})
+ 
+  // console.log(result)
   res.render("home",{
     startingPara:homeStartingContent,
     Posts:posts,
@@ -123,7 +130,7 @@ app.get('/contact',(req,res)=>{
   res.render("contact",{startingContact:contactContent});
 });
 
-app.get('/compose',(req,res)=>{
+app.get('/compose50982',(req,res)=>{
   res.render("compose");
   
 });
@@ -153,14 +160,15 @@ app.get('/:userinput',(req,res)=>{
   })
 })
 
-app.post('/compose',(req,res)=>{
-  const blog=new Blog({
-    Title:`${req.body.title}`,
-    Content:`${req.body.compose}`,
+app.post('/compose50982',(req,res)=>{
+//   const newBlog=new Blog({
+//     Title:`${req.body.title}`,
+//     Content:`${req.body.compose}`,
 
-    
-})
-  blog.save();
+   
+// })
+  // newBlog.save();
+  // console.log(newBlog)
 
   // const allBlogs = await Blog.find({});  
   console.log(req.body.title);
@@ -170,7 +178,14 @@ app.post('/compose',(req,res)=>{
     compose: req.body.compose,
   }
 
-  posts.push(post);
+   posts.push(post);
+ 
+  const newblog= new Blog({
+    Content:posts,
+  })
+  
+  newblog.save();
+
 
   res.redirect('/');
 })
