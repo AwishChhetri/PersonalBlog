@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+</head>
+
+    <title>Sign in from</title>
+</head>
+
+<style>
+    #form{
+        padding:150px;
+        
+    }
+
+    #submit{
+        margin-top:30px;
+        
+    }
+</style>
+<body data-bs-theme="dark">
+    <form action="/Sign" method="post"  id="form">
+        <div class="row g-3 align-items-center">
+            <h1>Sign in to COMPOSE!</h1>
+            <lable class="form-label" class="col-auto">Username</lable>
+            <input class="form-control"  placeholder="Username" type="text" name="name">
+            <label class="form-label" class="col-auto">Password</label>
+            <input  id="password " class="form-control"  placeholder="password" type="password" name="number">
+            <br>
+        </div>
+        <div>
+
+            <button id="submit" class="btn btn-info" type="submit" aria-required="true">Submit</button>
+        </div>
+       
+        
+    </form>
+
+    <!-- <script>
+        $('password').on('click',()=>{
+
+        })
+    </script> -->
+</body>
+</html>
+
+
+
+

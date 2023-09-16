@@ -1,0 +1,17 @@
+<%- include("Partials/header.ejs"); -%>
+
+    <h1>Home</h1>
+    <p><%- startingPara %></p>
+
+    
+        <% Posts.forEach(function(post) { %>
+          <h1><%= post.title %></h1>
+          <p><%= post.compose.substring(0,200)+"..." %>
+            <a name="readmore" href="post.ejs"><button class="btn btn-info">Read more</button></a>
+          </p>
+         
+
+        <% }) %>
+
+
+<%- include("Partials/footer.ejs"); -%>
