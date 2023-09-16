@@ -6,7 +6,7 @@
     
         <% Posts.forEach(function(post) { %>
           <h1><%= post.title %></h1>
-          <p><%= post.compose.substring(0,200)+"..." %>
+          <p><%= post.compose.substring(0,2000)+"..." %>
             <a name="readmore" href="post.ejs"><button class="btn btn-info">Read more</button></a>
           </p>
          
